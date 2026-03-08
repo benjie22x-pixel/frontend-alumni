@@ -1,0 +1,111 @@
+🧭 Step 1 — Upload Your Project to GitHub
+
+Go to GitHub
+
+Click New Repository
+
+Example:
+
+trace-alumni-system
+
+Then upload your files.
+
+Or use Git command:
+
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/trace-alumni-system.git
+git push -u origin main
+🚀 Step 2 — Deploy Your Backend (API)
+
+If your server is something like:
+
+server.js
+routes
+package.json
+
+Deploy it to Railway.
+
+Steps in Railway
+
+Go to
+https://railway.app
+
+Click New Project
+
+Select:
+
+Deploy from GitHub Repo
+
+Select your project
+
+Railway will automatically deploy your Node server.
+
+You will get a public API URL like:
+
+https://trace-alumni-production.up.railway.app
+🔗 Step 3 — Update Your API URLs
+
+Right now you use:
+
+http://localhost:3000
+
+Change it to your Railway URL.
+
+Example:
+
+fetch("https://trace-alumni-production.up.railway.app/alumni")
+
+and
+
+fetch("https://trace-alumni-production.up.railway.app/events")
+🌍 Step 4 — Deploy Your Frontend
+
+Upload your HTML project to Vercel or Netlify.
+
+Using Netlify
+
+Go to
+https://netlify.com
+
+Drag your project folder.
+
+OR connect your GitHub repo.
+
+After deploy you get a link like:
+
+https://trace-alumni.netlify.app
+
+Now anyone can access your system.
+
+🏗 Final Architecture
+Users
+   │
+   │
+Frontend (Netlify / Vercel)
+   │
+   │
+Backend API (Railway)
+   │
+   │
+MySQL Database (Railway)
+🎓 Example Result
+
+Your system will look like:
+
+https://trace-alumni.netlify.app
+
+Students can:
+
+✔ Register
+✔ Login
+✔ View events
+✔ Register for events
+
+Admin can:
+
+✔ Manage alumni
+✔ Add events
+✔ View statistics

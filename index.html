@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRACE - Alumni Tracking System | Holy Spirit National High School</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo-section">
+                <img src="Image/hsnhs.logo.jpg" alt="HSNHS Logo" class="logo-img">
+                <div class="logo-text">
+                    <h1>HSNHS</h1>
+                    <span>Alumni Tracking System</span>
+                </div>
+            </div>
+           <!-- Palitan mo ang nav-buttons section mo sa index.html -->
+<nav class="nav-buttons">
+    <a href="#home" class="nav-link"><i class="fas fa-home"></i> Home</a>
+    <a href="#about" class="nav-link"><i class="fas fa-info-circle"></i> About</a>
+    <a href="#features" class="nav-link"><i class="fas fa-star"></i> Features</a>
+    <a href="#contact" class="nav-link"><i class="fas fa-phone"></i> Contact</a>
+    <button class="btn-nav" onclick="openLoginModal()">
+        <a href="login.html"> Login</a>
+    </button>
+    <button class="btn-nav btn-highlight" onclick="window.location.href='register.html'">
+        <i class="fas fa-user-plus"></i> Register
+    </button>
+</nav>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>Tracking Graduate Success Beyond the Classroom</h2> 
+
+                    <p>Connect, track, and celebrate the achievements of Holy Spirit National High School alumni. Stay informed about career paths, share your success stories, and inspire future generations.</p>
+                    
+                <div class="hero-image">
+                    <img src="Image/campus.webp" alt="HSNHS campus" class="hero-logo">
+                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>About TRACE</h2>
+                <p>Alumni Tracking and Career Engagement System</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Empowering Alumni Connections</h3>
+                    <p>TRACE (Tracking and Career Engagement) is a comprehensive alumni tracking system designed to monitor the career paths, achievements, and engagements of our graduates from Holy Spirit National High School.</p>
+                    <p>Our mission is to maintain a strong connection between the school and its alumni, fostering a supportive network that benefits both current students and graduates. Through TRACE, we can:</p>
+                    <ul class="about-list">
+                        <li><i class="fas fa-check-circle"></i> Track graduate success and career outcomes</li>
+                        <li><i class="fas fa-check-circle"></i> Facilitate mentorship opportunities</li>
+                        <li><i class="fas fa-check-circle"></i> Share achievements and success stories</li>
+                        <li><i class="fas fa-check-circle"></i> Organize alumni events and reunions</li>
+                        <li><i class="fas fa-check-circle"></i> Provide career guidance to current students</li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Features</h2>
+                <p>Discover what TRACE can do for you</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Profile Management</h3>
+                    <p>Create and maintain your professional alumni profile. Update your information, career details, and achievements anytime.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Analytics Dashboard</h3>
+                    <p>Visualize graduate success through interactive charts and data analytics. Track employment rates and career trends.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Career Timeline</h3>
+                    <p>Document your professional journey with our interactive timeline feature. Track milestones and achievements over time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Event Management</h3>
+                    <p>Stay updated on upcoming alumni events, reunions, and school activities. Never miss an opportunity to reconnect.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Alumni Network</h3>
+                    <p>Connect with fellow alumni. Build professional networks, find mentors, and collaborate on opportunities.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3>Achievement Sharing</h3>
+                    <p>Share your successes with the HSNHS community. Inspire current students and represent your school proudly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="section stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon blue">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="statsAlumni">0</h3>
+                        <p>Registered Alumni</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="statsEmployed">0</h3>
+                        <p>Employed</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon yellow">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="statsCollege">0</h3>
+                        <p>In College</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon purple">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="statsRate">0%</h3>
+                        <p>Employment Rate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact Us</h2>
+                <p>Get in touch with Holy Spirit National High School</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Address</h4>
+                            <p>Holy Spirit National High School<br>Don Antonio, Quezon City, Philippines</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>(02) 8123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>info@hsnhs.edu.ph</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Office Hours</h4>
+                            <p>Monday - Friday: 8:00 AM - 5:00 PM<br>Saturday: 8:00 AM - 12:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <form id="contactForm" onsubmit="submitContactForm(event)">
+                        <h3>Send us a Message</h3>
+                        <div class="form-group">
+                            <label for="contactName">Full Name</label>
+                            <input type="text" id="contactName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Email Address</label>
+                            <input type="email" id="contactEmail" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactSubject">Subject</label>
+                            <select id="contactSubject" class="form-control" required>
+                                <option value="">Select Subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="alumni">Alumni Services</option>
+                                <option value="events">Events & Reunions</option>
+                                <option value="support">Technical Support</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Message</label>
+                            <textarea id="contactMessage" class="form-control" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                
+                    <p>Alumni Tracking and Career Engagement System of Holy Spirit National High School.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="register.html">Register</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Alumni Directory</a></li>
+                        <li><a href="#">Career Opportunities</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to get updates about alumni events and news.</p>
+                    <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Holy Spirit National High School. All rights reserved.</p>
+                <p>Developed for Best in Innovation 2024</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-sign-in-alt"></i> Login to TRACE</h3>
+                <span class="close" onclick="closeLoginModal()">&times;</span>
+            </div>
+            <form id="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="role">Login As</label>
+                    <select id="role" class="form-control" required>
+                        <option value="alumni">Alumni</option>
+                        <option value="admin">Administrator</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                </div>
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="rememberMe">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn-primary btn-full">
+                    <a href="login.html"></a>Login
+                </button>
+                <div class="login-divider">
+                    <span>or</span>
+                </div>
+                <p class="register-link">
+                    Don't have an account? <a href="register.html">Register here</a>
+                </p>
+            </form>
+            <div class="login-demo">
+                <p><strong>Demo Credentials:</strong></p>
+                <p>Admin: admin@hsnhs.edu / admin123</p>
+                <p>Alumni: alumni@hsnhs.edu / password123</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <span id="toast"></span>
+    </div>
+
+       
+
+</body>
+</html>

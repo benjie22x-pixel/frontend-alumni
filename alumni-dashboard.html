@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard - TRACE Alumni System</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="alumni-dashboard.css">
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+        <div class="logo-area">
+            <img src="Image/hsnhs.logo.jpg" alt="HSNHS Logo" class="logo-img">
+            <div class="logo-text">
+                <h2>TRACE</h2>
+                <span>Alumni System</span>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="active"><i class="fas fa-user"></i> <span>My Profile</span></a></li>
+            <li><a href="#statusSection"><i class="fas fa-bullhorn"></i> <span>Update Status</span></a></li>
+            <li><a href="#timelineSection"><i class="fas fa-history"></i> <span>Timeline</span></a></li>
+            <li><a href="#eventsSection"><i class="fas fa-calendar-alt"></i> <span>Events</span></a></li>
+        </ul>
+        <div style="margin-top: auto;">
+            <a href="index.html" onclick="logout()" style="color: #ff6b6b; display: flex; align-items: center; gap: 10px; padding: 15px; text-decoration: none; font-weight: 500;">
+                <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="greeting">
+                <h3>Welcome back, <span id="headerName" style="color: var(--primary-color);">Alumni</span>!</h3>
+                <p>Here is your latest career update.</p>
+            </div>
+            <div class="user-actions">
+                <button class="icon-btn" onclick="toggleDarkMode()" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
+                <div class="user-profile">
+                    <img src="Image/hsnhs.logo.jpg" alt="Profile" id="headerAvatar">
+                    <span id="headerRole">Alumni</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            
+            <!-- Left Column: Profile Card -->
+            <div class="profile-section">
+                <!-- Profile Card -->
+                <div class="card profile-card">
+                    <div class="profile-header">
+                        <div class="avatar-container">
+                            <img src="Image/hsnhs.logo.jpg" alt="Profile" id="profileAvatar" class="profile-avatar-lg">
+                            <span class="status-indicator" id="profileStatusBadge"></span>
+                        </div>
+                        <div class="profile-info">
+                            <h2 id="profileName">Loading...</h2>
+                            <p class="profile-meta" id="profileMeta">Class of 2020</p>
+                            <span class="badge" id="profileStatus">Status</span>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-details">
+                        <div class="detail-item">
+                            <i class="fas fa-envelope"></i>
+                            <span id="profileEmail">email@example.com</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span id="profileStrand">Strand</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-building"></i>
+                            <span id="profileCompany">Company/School</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="profileLocation">Location</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-actions">
+                        <button class="btn btn-primary" onclick="openContactAdminModal()">
+                            <i class="fas fa-user-edit"></i> Request Data Change
+                        </button>
+                    </div>
+                </div>  
+
+                <!-- Skills Card -->
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-tools"></i> My Skills</h3>
+                    <div class="skills-list" id="skillsList">
+                        <!-- Dynamic Skills will appear here -->
+                        <span class="skill-tag">Loading...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Main Content -->
+            <div class="content-section">
+                
+                <!-- Status Update Section -->
+                <div class="card" id="statusSection">
+                    <h3 class="card-title"><i class="fas fa-bullhorn"></i> Update Your Status</h3>
+                    <p class="card-subtitle">Let the school and fellow alumni know what you are doing now.</p>
+                    
+                    <form id="statusForm" onsubmit="updateAlumniStatus(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Current Status *</label>
+                                <select id="newStatus" class="form-control" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Employed">Employed</option>
+                                    <option value="College">College</option>
+                                    <option value="Entrepreneur">Entrepreneur</option>
+                                    <option value="Skills Training">Skills Training</option>
+                                    <option value="Unemployed">Unemployed</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Job Title / Course</label>
+                                <input type="text" id="newCourseJob" class="form-control" placeholder="e.g. Software Engineer">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Company / School</label>
+                                <input type="text" id="newCompanySchool" class="form-control" placeholder="e.g. Google">
+                            </div>
+                            <div class="form-group">
+                                <label>Location</label>
+                                <input type="text" id="newLocation" class="form-control" placeholder="e.g. Quezon City">
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Update Status
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Timeline Section -->
+                <div class="card" id="timelineSection">
+                    <div class="card-header-row">
+                        <h3 class="card-title"><i class="fas fa-history"></i> My Career Timeline</h3>
+                        <button class="btn-icon" onclick="openTimelineModal()" title="Add Entry">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="timeline" id="timelineContainer">
+                        <!-- Dynamic Timeline -->
+                    </div>
+                </div>
+
+                <!-- Events Section -->
+                <div class="card" id="eventsSection">
+                    <h3 class="card-title"><i class="fas fa-calendar-alt"></i> Upcoming Events</h3>
+                    <div class="events-list" id="upcomingEventsSection">
+                 <!-- Event items will be dynamically inserted here -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ==================== MODALS ==================== -->
+
+    <!-- 1. Contact Admin Modal (For changing core details) -->
+    <div id="contactAdminModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-shield"></i> Request Data Change</h3>
+                <span class="close" onclick="closeContactAdminModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="info-box">
+                    <i class="fas fa-info-circle"></i>
+                    <p>Only Administrators can modify core profile details (Name, Email, Batch Year). Please send a request below.</p>
+                </div>
+                <form onsubmit="sendAdminRequest(event)">
+                    <div class="form-group">
+                        <label>What needs to be changed?</label>
+                        <textarea class="form-control" rows="3" placeholder="e.g., Please change my name to 'Juan Dela Cruz'." required></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="closeContactAdminModal()">Cancel</button>
+                        <button type="submit" class="btn-primary">Send Request</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Add Timeline Entry Modal -->
+    <div id="timelineModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus-circle"></i> Add Career Milestone</h3>
+                <span class="close" onclick="closeTimelineModal()">&times;</span>
+            </div>
+            <form id="timelineForm" onsubmit="addTimelineEntry(event)">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="timelineTitle" class="form-control" placeholder="e.g. Promoted to Senior Developer" required>
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="timelineDate" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="timelineDescription" class="form-control" rows="3" placeholder="Describe the milestone..."></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeTimelineModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">Add Entry</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="toast">
+        <span id="toastMessage"></span>
+    </div>
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="script.js"></script>
+    <script src="alumni-dashboard.js"></script>
+</body>
+</html>

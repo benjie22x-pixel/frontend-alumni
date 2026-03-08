@@ -1,0 +1,47 @@
+CREATE TABLE alumni (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    fullName VARCHAR(255),
+    email VARCHAR(255),
+    password VARCHAR(255),
+    yearGraduated INT,
+    strand VARCHAR(100),
+    status VARCHAR(100),
+    jobTitle VARCHAR(255),
+    companyName VARCHAR(255),
+    university VARCHAR(255),
+    course VARCHAR(255),
+    skills TEXT
+);
+
+-- Events Table
+CREATE TABLE events (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    date DATE NOT NULL,
+    location VARCHAR(255) DEFAULT 'Online'
+);
+
+-- Event Registrations Table
+CREATE TABLE event_registrations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    eventId INT NOT NULL,
+    alumniId INT NOT NULL,
+    registeredAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_registration (eventId, alumniId),
+    FOREIGN KEY (eventId) REFERENCES events(id) ON DELETE CASCADE,
+    FOREIGN KEY (alumniId) REFERENCES alumni(id) ON DELETE CASCADE
+);
+
+-- Make sure the timeline table exists
+CREATE TABLE IF NOT EXISTS timeline (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    userId INT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    date DATE NOT NULL
+);
+
+-- Add UNIQUE constraint to prevent duplicates for same user/title/date
+ALTER TABLE timeline
+ADD CONSTRAINT unique_user_title_date UNIQUE (userId, title, date);

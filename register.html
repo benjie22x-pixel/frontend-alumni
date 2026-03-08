@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - TRACE Alumni System | Holy Spirit National High School</title>
+    <!-- Use Login CSS for the main layout -->
+    <link rel="stylesheet" href="login.css">
+    <!-- Use Register CSS for specific form styles -->
+    <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="login-page">
+        <div class="login-container">
+            <!-- Left Side - School Branding -->
+            <div class="login-brand">
+                <div class="school-badge">
+                    <img src="Image/hsnhs.logo.jpg" alt="HSNHS Logo">
+                    <div>
+                        <h1>TRACE</h1>
+                        <span>Alumni System</span>
+                    </div>
+                </div>
+                <p class="login-tagline">
+                    Join the Holy Spirit National High School Alumni Network. Connect, Share, and Grow with us.
+                </p>
+                <ul class="login-features">
+                    <li><i class="fas fa-check-circle"></i> Track your career journey</li>
+                    <li><i class="fas fa-check-circle"></i> Connect with fellow alumni</li>
+                    <li><i class="fas fa-check-circle"></i> Stay updated on school events</li>
+                    <li><i class="fas fa-check-circle"></i> Share your achievements</li>
+                </ul>
+            <div class="login-footer">
+                <a href="index.html"><i class="fas fa-home"></i> Back to Home</a>
+            </div>
+        </div>
+
+        <!-- Right Side - Registration Form -->
+        <div class="login-form-container">
+            <div class="login-box register-box">
+                <div class="login-box-header">
+                    <div class="login-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h2>Alumni Registration</h2>
+                    <p>Create your account to get started</p>
+                </div>
+
+                <form id="registerForm" onsubmit="handleRegistration(event)">
+                    
+                    <!-- Section: Personal Information -->
+                    <div class="form-section-title">
+                        <i class="fas fa-user"></i> Personal Information
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <div class="input-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="fullName" class="form-control" placeholder="Enter your full name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <div class="input-group">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactNumber">Contact Number</label>
+                        <input type="text" id="contactNumber" class="form-control" placeholder="Enter your contact number">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="password">Password *</label>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="password" class="form-control" placeholder="Create a password" required minlength="6">
+                                <button type="button" class="password-toggle" onclick="togglePasswordField('password')">
+                                    <i class="fas fa-eye" id="toggleIcon-password"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password *</label>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password" required>
+                                <button type="button" class="password-toggle" onclick="togglePasswordField('confirmPassword')">
+                                    <i class="fas fa-eye" id="toggleIcon-confirmPassword"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: Education -->
+                    <div class="form-section-title">
+                        <i class="fas fa-graduation-cap"></i> Education Background
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="yearGraduated">Year Graduated *</label>
+                            <div class="input-group">
+                                <i class="fas fa-calendar"></i>
+                                <select id="yearGraduated" class="form-control" required>
+                                    <option value="">Select Year</option>
+                                    <!-- Populated by JS -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="strand">Strand/Track *</label>
+                            <div class="input-group">
+                                <i class="fas fa-book"></i>
+                                <select id="strand" class="form-control" required>
+                                    <option value="">Select Strand</option>
+                                    <option value="STEM">STEM</option>
+                                    <option value="HUMSS">HUMSS</option>
+                                    <option value="ABM">ABM</option>
+                                    <option value="TVL">TVL</option>
+                                    <option value="ICT">ICT</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: Current Status -->
+                    <div class="form-section-title">
+                        <i class="fas fa-briefcase"></i> Current Status
+                    </div>
+
+                    <div class="form-group">
+                        <label for="currentStatus">Status *</label>
+                        <div class="input-group">
+                            <i class="fas fa-clipboard-check"></i>
+                            <select id="currentStatus" class="form-control" required onchange="handleStatusChange()">
+                                <option value="">Select Status</option>
+                                <option value="Employed">Employed</option>
+                                <option value="Unemployed">Unemployed</option>
+                                <option value="College">College Student</option>
+                                <option value="Entrepreneur">Entrepreneur</option>
+                                <option value="Training">Skills Training</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- DYNAMIC FIELDS BASED ON STATUS -->
+                    <div id="employmentDetails" class="dynamic-section" style="display: none;">
+                        <!-- If Employed -->
+                        <div class="form-row" id="employedFields">
+                            <div class="form-group">
+                                <label for="jobTitle">Job Title *</label>
+                                <div class="input-group">
+                                    <i class="fas fa-briefcase"></i>
+                                    <input type="text" id="jobTitle" class="form-control" placeholder="e.g. Software Engineer">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="companyName">Company Name *</label>
+                                <div class="input-group">
+                                    <i class="fas fa-building"></i>
+                                    <input type="text" id="companyName" class="form-control" placeholder="e.g. Google Inc.">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Common for Employed/Entrepreneur -->
+                        <div class="form-group">
+                            <label for="jobLocation">Job Location</label>
+                            <div class="input-group">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <input type="text" id="jobLocation" class="form-control" placeholder="e.g. Manila, Philippines">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="unemploymentDetails" class="dynamic-section" style="display: none;">
+                        <!-- If Unemployed -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="yearsUnemployed">How many years? *</label>
+                                <div class="input-group">
+                                    <i class="fas fa-clock"></i>
+                                    <input type="number" id="yearsUnemployed" class="form-control" placeholder="e.g. 1" min="0">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lookingFor">Looking for a job?</label>
+                                <div class="input-group">
+                                    <i class="fas fa-search"></i>
+                                    <select id="lookingFor" class="form-control">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- For College Students -->
+                     <div id="collegeDetails" class="dynamic-section" style="display: none;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="university">University/College *</label>
+                                <div class="input-group">
+                                    <i class="fas fa-university"></i>
+                                    <input type="text" id="university" class="form-control" placeholder="e.g. Harvard University">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="course">Course/Degree *</label>
+                                <div class="input-group">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <input type="text" id="course" class="form-control" placeholder="e.g. BS Computer Science">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: Additional -->
+                    <div class="form-section-title">
+                        <i class="fas fa-tools"></i> Additional Info
+                    </div>
+
+                    <div class="form-group">
+                        <label for="skills">Skills (comma separated)</label>
+                        <div class="input-group">
+                            <i class="fas fa-code"></i>
+                            <input type="text" id="skills" class="form-control" placeholder="e.g. Java, Python, Design">
+                        </div>
+                    </div>
+
+                    <!-- Terms -->
+                    <div class="terms-box">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agreeTerms" required>
+                            <span>I agree to the <a href="#" onclick="showTerms(event)">Terms</a> and <a href="#" onclick="showPrivacy(event)">Privacy Policy</a></span>
+                        </label>
+                    </div>
+
+                    <!-- Actions -->
+                    <button type="submit" class="btn-login">
+                        <i class="fas fa-user-plus"></i> Register Account
+                    </button>
+
+                    <div class="login-divider">
+                        <span>or</span>
+                    </div>
+
+                    <p class="register-link">
+                        Already have an account? <a href="login.html">Login here</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Terms Modal -->
+<div id="termsModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3><i class="fas fa-file-contract"></i> Terms and Conditions</h3>
+            <span class="close" onclick="closeModal('termsModal')">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p>By registering, you agree to provide accurate information. You consent to the school using your data for alumni engagement purposes.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Privacy Modal -->
+<div id="privacyModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3><i class="fas fa-shield-alt"></i> Privacy Policy</h3>
+            <span class="close" onclick="closeModal('privacyModal')">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p>Your personal information is kept secure and will not be shared with third parties without your consent.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Success Modal -->
+<div id="successModal" class="modal">
+    <div class="modal-content">
+        <div class="success-content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Registration Successful!</h3>
+            <p>Welcome to HSNHS Alumni.</p>
+            <p>Please login to continue.</p>
+            <button class="btn-login" onclick="window.location.href='login.html'">
+                <i class="fas fa-sign-in-alt"></i> Proceed to Login
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Notification -->
+<div id="toast" class="toast">
+    <span id="toastMessage"></span>
+</div>
+
+<script src="register.js"></script>
+
+</body>
+</html>
